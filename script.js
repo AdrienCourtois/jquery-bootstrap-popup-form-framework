@@ -434,6 +434,7 @@ class Form {
  * @arg {string} ajaxMethod The method (default POST) to be used when calling the remote page with Ajax.
  * @arg doneFunction The function to be called when the remote paged returned "success". Default is reload.
  * @arg {Object.<string, string>} defaultData The default content of each field, based on the field name.
+ * @arg processFunction The callback function to be called with the data of the form as parameter when the form is completed.
  * 
  * @returns {Form} The form object you just created. You just have to call its "showForm" method to go! 
  */
@@ -453,7 +454,7 @@ var formHandler = {
 			defaultData: {}
 		}, options);
 
-		if (settings.ajaxUrl.length == 0){
+		if (settings.ajaxUrl.length == 0 && typeof(settings.processFunction) == "undefined"){
 			console.error('Wrong usage of $.createForm : ajaxUrl param empty');
 			return false;
 		}
